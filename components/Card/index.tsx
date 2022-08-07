@@ -1,15 +1,38 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 
+// ICONS
+import Star from "./icons/star-icon.svg";
+
 // STYLES
-import { Container, Movie, Overview, MovieInfo } from "./styles";
+import {
+  Container,
+  Movie,
+  Overview,
+  MovieInfo,
+  Poster,
+  Title,
+  Rate,
+  Release,
+} from "./styles";
 
 const Card = function () {
   return (
     <Container>
       <Movie>
-        <Image src="/mock-movie.jpg" alt="logo" width={115} height={153} />
+        <Poster>
+          <img src="/mock-movie.jpg" alt="logo" />
+        </Poster>
 
-        <MovieInfo></MovieInfo>
+        <MovieInfo>
+          <Title>The Post: A Guerra Secreta</Title>
+
+          <Rate>
+            <Star />
+          </Rate>
+
+          <Release></Release>
+        </MovieInfo>
       </Movie>
       <Overview></Overview>
     </Container>

@@ -1,12 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin-top: 135px;
+  margin-top: 80px;
   background-color: #000;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 export const Title = styled.h2`
@@ -21,4 +18,7 @@ export const Title = styled.h2`
 
 export const GridContainer = styled.div`
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
