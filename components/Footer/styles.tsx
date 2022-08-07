@@ -12,3 +12,7 @@ export const Content = styled.div`
     margin: 0 auto;
   }
 `;
+
+export const Disclaimer = styled.div``;
+
+export const IconsContainer = styled.div``;

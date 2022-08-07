@@ -1,13 +1,33 @@
 import styled from "styled-components";
 
+interface ToggleProps {
+  isCardOpen: boolean;
+}
+
+interface OverviewProps {
+  isCardOpen: boolean;
+}
+
 export const Container = styled.div`
   background: #1a1a1a;
   border-radius: 15px;
   padding-left: 10px;
   padding-top: 20px;
-  padding-bottom: 40px;
   width: 300px;
 `;
+
+function toggleOverview(isCardOpen: boolean) {
+  if (isCardOpen)
+    return `
+    padding-bottom: 40px;
+    max-height: 100vh;
+  `;
+
+  return `
+    padding: 0;
+    max-height: 0;
+  `;
+}
 
 export const Movie = styled.div`
   display: flex;
@@ -25,8 +45,12 @@ export const Poster = styled.div`
   }
 `;
 
-export const Overview = styled.div`
+export const Overview = styled.div<OverviewProps>`
   margin-top: 17px;
+  ${(props) => toggleOverview(props.isCardOpen)}
+  transition: 200ms;
+  overflow: hidden;
+
   h2 {
     font-weight: 700;
     font-size: 16px;
@@ -79,6 +103,20 @@ export const Release = styled.p`
   color: #ffffff;
 `;
 
-export const ToggleOverview = styled.button`
+export const ToggleOverview = styled.button<ToggleProps>`
+  background: none;
+  border: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  margin-top: 22px;
 
+  svg {
+    margin-right: 10px;
+    transform: rotate(${(props) => (props.isCardOpen ? "180deg" : "0deg")});
+    transition: transform 200ms ease-in-out;
+  }
 `;

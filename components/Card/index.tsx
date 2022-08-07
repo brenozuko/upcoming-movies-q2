@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { useState } from "react";
 import Image from "next/image";
 
 // ICONS
@@ -19,6 +20,14 @@ import {
 } from "./styles";
 
 const Card = function () {
+  const [isCardOpen, setIsCardOpen] = useState(false);
+  const [toggleText, setToggleText] = useState("Abrir sinopse");
+
+  const toggleCard = function () {
+    setIsCardOpen(!isCardOpen);
+    setToggleText(isCardOpen ? "Abrir sinopse" : "Fechar sinopse");
+  };
+
   return (
     <Container>
       <Movie>
@@ -36,10 +45,13 @@ const Card = function () {
 
           <Release>Data de Lançamento: 29/05/2022</Release>
 
-          <ToggleOverview></ToggleOverview>
+          <ToggleOverview isCardOpen={isCardOpen} onClick={toggleCard}>
+            <ArrowDown />
+            {toggleText}
+          </ToggleOverview>
         </MovieInfo>
       </Movie>
-      <Overview>
+      <Overview isCardOpen={isCardOpen}>
         <h2>Sinopse: </h2>
         <p>
           Desde criança, Georgia Nolan só tinha um sonho: se tornar bombeira,

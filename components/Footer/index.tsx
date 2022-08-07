@@ -8,6 +8,8 @@ const Footer = function () {
     <Container>
       <Content>
         <Image src="/logo.png" alt="logo" width={130} height={70} />
+
+        
       </Content>
     </Container>
   );
