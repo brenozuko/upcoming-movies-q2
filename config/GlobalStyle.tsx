@@ -56,6 +56,7 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+
 }
 
 /* make sure to set some focus styles for accessibility */
@@ -401,6 +402,19 @@ textarea {
 
 /* end of reset */
 
+html, body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  background-color: #000;
+}
+
+`;
+
+export const Container = styled.div`
+  @media (min-width: 1024px) {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
 `;
 
 export default GlobalStyle;

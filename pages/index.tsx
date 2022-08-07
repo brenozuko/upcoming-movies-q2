@@ -1,10 +1,24 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+
+// COMPONENTS
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Grid from "../components/Grid";
+// STYLES
+import { Container } from "../config/GlobalStyle";
 
 const Home: NextPage = () => {
-  return <div></div>;
+  return (
+    <>
+      <Header />
+
+      <Container>
+        <Grid />
+      </Container>
+
+      <Footer />
+    </>
+  );
 };
 
 export default Home;
