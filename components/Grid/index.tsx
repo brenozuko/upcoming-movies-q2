@@ -2,14 +2,15 @@
 import Card from "../Card";
 
 // STYLES
-import { Container, Title } from "./styles";
+import { Container, Title, GridContainer } from "./styles";
 
 const Grid = function () {
   return (
     <Container>
       <Title>FILMES QUE VEM POR AÍ...</Title>
-
-      <Card />
+      <GridContainer>
+        <Card />
+      </GridContainer>
     </Container>
   );
 };

@@ -8,6 +8,7 @@ export const Container = styled.div`
   width: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
+  z-index: 10;
 `;
 
 export const Content = styled.div`
