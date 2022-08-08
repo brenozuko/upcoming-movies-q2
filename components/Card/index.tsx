@@ -17,6 +17,7 @@ import {
   Rate,
   Release,
   ToggleOverview,
+  NoOverview,
 } from "./styles";
 
 // TYPES
@@ -37,11 +38,19 @@ const Card = function ({ title, rate, release, overview, poster }: CardProps) {
     setToggleText(isCardOpen ? "Abrir sinopse" : "Fechar sinopse");
   };
 
+  const renderPostPath = () => {
+    if (poster) {
+      return `https://image.tmdb.org/t/p/w500${poster}`;
+    }
+
+    return "/default-poster.png";
+  };
+
   return (
     <Container>
       <Movie>
         <Poster>
-          <img src={`https://image.tmdb.org/t/p/w185/${poster}`} alt="logo" />
+          <img src={renderPostPath()} alt="movie logo" />
         </Poster>
 
         <MovieInfo>
@@ -49,7 +58,7 @@ const Card = function ({ title, rate, release, overview, poster }: CardProps) {
 
           <Rate>
             <Star />
-            <p>{rate}</p>
+            <p>{rate ? rate : 'Não avaliado'}</p>
           </Rate>
 
           <Release>{`Data de Lançamento: ${format(
@@ -57,10 +66,14 @@ const Card = function ({ title, rate, release, overview, poster }: CardProps) {
             "dd/MM/yyyy"
           )}`}</Release>
 
-          <ToggleOverview isCardOpen={isCardOpen} onClick={toggleCard}>
-            <ArrowDown />
-            {toggleText}
-          </ToggleOverview>
+          {overview && (
+            <ToggleOverview isCardOpen={isCardOpen} onClick={toggleCard}>
+              <ArrowDown />
+              {toggleText}
+            </ToggleOverview>
+          )}
+
+          {!overview && <NoOverview>Sinopse não disponível</NoOverview>}
         </MovieInfo>
       </Movie>
       <Overview isCardOpen={isCardOpen}>

@@ -113,6 +113,15 @@ export const Release = styled.p`
   color: #ffffff;
 `;
 
+export const NoOverview = styled.p`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  margin-top: 22px;
+  max-width: 150px;
+`;
+
 export const ToggleOverview = styled.button<ToggleProps>`
   background: none;
   border: none;
