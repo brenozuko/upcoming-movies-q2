@@ -14,6 +14,8 @@ export const Content = styled.div`
   @media (min-width: 1024px) {
     max-width: 1280px;
     margin: 0 auto;
+    flex-direction: row;
+    justify-content: space-between;
   }
 `;
 
@@ -26,6 +28,13 @@ export const Disclaimer = styled.div`
     line-height: 15px;
     text-align: center;
     color: #ffffff;
+  }
+
+  @media (min-width: 768px) {
+    p {
+      font-size: 16px;
+      line-height: 20px;
+    }
   }
 `;
 

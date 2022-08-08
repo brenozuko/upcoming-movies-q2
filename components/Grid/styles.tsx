@@ -14,6 +14,11 @@ export const Title = styled.h2`
   color: #ffffff;
   margin-top: 29px;
   text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 26px;
+    line-height: 32px;
+  }
 `;
 
 export const GridContainer = styled.div`
