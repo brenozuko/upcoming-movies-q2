@@ -11,6 +11,7 @@ import Grid from "../components/Grid";
 
 // STYLES
 import { Container } from "../config/GlobalStyle";
+import { ReactPaginateStyled } from "../styles/Home";
 import "react-toastify/dist/ReactToastify.css";
 
 // TYPES
@@ -18,37 +19,36 @@ type HomeProps = {
   moviesResults: any;
 };
 
-const fetchMovies = async () => {
+async function onFetchMovies(page: number) {
   try {
     const { data } = await axios.get(
-      "https://api.themoviedb.org/3/movie/upcoming?api_key=fe65f8e840e15d06c5c00bf13084da74&language=pt-BR&page=1"
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=fe65f8e840e15d06c5c00bf13084da74&language=pt-BR&page=${page}`
     );
 
-    return data.results;
+    return data;
   } catch (e) {
     console.log(e);
-    toast.error("Erro ao buscar os filmes.");
+    toast.error("Não foi possível recuperar os filmes...");
   }
-};
+}
 
 const Home: NextPage<HomeProps> = ({ moviesResults }) => {
   const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const handleChangePage = async (page: number) => {
-    try {
-      const { data } = await axios.get(
-        `https://api.themoviedb.org/3/movie/upcoming?api_key=fe65f8e840e15d06c5c00bf13084da74&language=pt-BR&page=${page}`
-      );
+  const handlePageChange = async (event: any) => {
+    const { selected } = event;
+    setPage(selected + 1);
+    const data = await onFetchMovies(selected + 1);
 
-      setMovies(data.results);
-    } catch (e) {
-      console.log(e);
-      toast.error("Erro ao buscar os filmes.");
-    }
+    setMovies(data.results);
+    setTotalPages(data.total_pages);
   };
 
   useEffect(() => {
-    setMovies(moviesResults);
+    setMovies(moviesResults.results);
+    setTotalPages(moviesResults.total_pages);
   }, [moviesResults]);
 
   return (
@@ -57,6 +57,15 @@ const Home: NextPage<HomeProps> = ({ moviesResults }) => {
 
       <Container>
         <Grid movies={movies} />
+
+        <ReactPaginateStyled
+          breakLabel="..."
+          nextLabel=">"
+          onPageChange={handlePageChange}
+          pageRangeDisplayed={3}
+          pageCount={totalPages}
+          previousLabel="<"
+        />
       </Container>
 
       <Footer />
@@ -65,11 +74,11 @@ const Home: NextPage<HomeProps> = ({ moviesResults }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await fetchMovies();
+  const moviesResults = await onFetchMovies(1);
 
   return {
     props: {
-      moviesResults: data,
+      moviesResults,
     },
   };
 };

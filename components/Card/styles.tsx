@@ -86,6 +86,7 @@ export const Title = styled.h2`
   font-weight: 700;
   font-size: 12px;
   line-height: 15px;
+  max-width: 150px;
 
   color: #ffffff;
 `;
