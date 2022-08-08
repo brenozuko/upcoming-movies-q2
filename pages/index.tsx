@@ -34,16 +34,23 @@ async function onFetchMovies(page: number) {
 
 const Home: NextPage<HomeProps> = ({ moviesResults }) => {
   const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const handlePageChange = async (event: any) => {
-    const { selected } = event;
-    setPage(selected + 1);
-    const data = await onFetchMovies(selected + 1);
+    try {
+      setLoading(true);
+      const { selected } = event;
+      const data = await onFetchMovies(selected + 1);
 
-    setMovies(data.results);
-    setTotalPages(data.total_pages);
+      setMovies(data.results);
+      setTotalPages(data.total_pages);
+    } catch (e) {
+      console.log(e);
+      toast.error("Não foi possível recuperar os filmes...");
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -56,7 +63,7 @@ const Home: NextPage<HomeProps> = ({ moviesResults }) => {
       <Header />
 
       <Container>
-        <Grid movies={movies} />
+        <Grid movies={movies} loading={loading} />
 
         <ReactPaginateStyled
           breakLabel="..."
