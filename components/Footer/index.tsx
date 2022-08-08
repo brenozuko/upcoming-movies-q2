@@ -19,11 +19,11 @@ const Footer = function () {
         </Disclaimer>
 
         <IconsContainer>
-          <a href="/aaa">
+          <a href="https://www.linkedin.com/in/breno-zukowski-b873101a2/">
             <Linkedin />
           </a>
 
-          <a href="/aaa">
+          <a href="https://github.com/brenozuko">
             <Github />
           </a>
         </IconsContainer>
