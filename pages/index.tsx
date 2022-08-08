@@ -54,8 +54,8 @@ const Home: NextPage<HomeProps> = ({ moviesResults }) => {
   };
 
   useEffect(() => {
-    setMovies(moviesResults.results);
-    setTotalPages(moviesResults.total_pages);
+    setMovies(moviesResults?.results);
+    setTotalPages(moviesResults?.total_pages);
   }, [moviesResults]);
 
   return (

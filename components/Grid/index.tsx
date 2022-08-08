@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // COMPONENTS
 import Card from "../Card";
 import { TailSpin } from "react-loader-spinner";
@@ -43,6 +45,8 @@ const Grid = function ({ movies, loading }: GridProps) {
       <Container>
         <Title>FILMES QUE VEM POR AÍ...</Title>
         <GridContainer>{renderMovieCards()}</GridContainer>
+
+        {!movies && <Title>Nenhum filme encontrado</Title>}
       </Container>
     );
   }

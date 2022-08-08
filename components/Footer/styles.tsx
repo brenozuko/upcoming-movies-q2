@@ -43,6 +43,7 @@ export const IconsContainer = styled.div`
 
   a {
     margin-right: 10px;
+    outline: none;
 
     &:nth-child(2) {
       margin-right: 0;
