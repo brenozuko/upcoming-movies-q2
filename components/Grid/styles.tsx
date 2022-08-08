@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   margin-top: 140px;
   background-color: #000;
-  height: 100vh;
+  padding-bottom: 60px;
 `;
 
 export const Title = styled.h2`
@@ -21,4 +21,13 @@ export const GridContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  @media (min-width: 1024px) {
+    justify-content: space-between;
+  }
 `;

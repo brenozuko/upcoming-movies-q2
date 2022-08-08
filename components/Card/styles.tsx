@@ -14,6 +14,15 @@ export const Container = styled.div`
   padding-left: 10px;
   padding-top: 20px;
   width: 300px;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    margin-right: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    margin-right: 0;
+  }
 `;
 
 function toggleOverview(isCardOpen: boolean) {
