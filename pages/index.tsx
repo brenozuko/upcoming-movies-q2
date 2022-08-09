@@ -8,10 +8,10 @@ import axios from "axios";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Grid from "../components/Grid";
+import SearchModal from "../components/SearchModal";
 
 // STYLES
-import { Container } from "../config/GlobalStyle";
-import { ReactPaginateStyled } from "../styles/Home";
+import { Container, ReactPaginateStyled } from "../config/GlobalStyle";
 import "react-toastify/dist/ReactToastify.css";
 
 // TYPES
@@ -36,6 +36,7 @@ const Home: NextPage<HomeProps> = ({ moviesResults }) => {
   const [movies, setMovies] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
 
   const handlePageChange = async (event: any) => {
     try {
@@ -53,6 +54,14 @@ const Home: NextPage<HomeProps> = ({ moviesResults }) => {
     }
   };
 
+  const onOpenSearch = () => {
+    setSearchModalOpen(true);
+  };
+
+  const onCloseSearch = () => {
+    setSearchModalOpen(false);
+  };
+
   useEffect(() => {
     setMovies(moviesResults?.results);
     setTotalPages(moviesResults?.total_pages);
@@ -60,7 +69,7 @@ const Home: NextPage<HomeProps> = ({ moviesResults }) => {
 
   return (
     <>
-      <Header />
+      <Header openSearch={onOpenSearch} />
 
       <Container>
         <Grid movies={movies} loading={loading} />
@@ -76,6 +85,8 @@ const Home: NextPage<HomeProps> = ({ moviesResults }) => {
       </Container>
 
       <Footer />
+
+      {searchModalOpen && <SearchModal closeSearch={onCloseSearch} />}
     </>
   );
 };

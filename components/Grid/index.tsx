@@ -20,7 +20,7 @@ const Grid = function ({ movies, loading }: GridProps) {
           key={movie.id}
           title={movie.title}
           rate={movie.vote_average}
-          release={movie.release_date}
+          release={new Date(movie.release_date)}
           overview={movie.overview}
           poster={movie.poster_path}
         />

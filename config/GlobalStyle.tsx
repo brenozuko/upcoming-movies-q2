@@ -1,32 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
-
-interface CarouselContainerDefaultProps {
-  showOnDesktop?: any;
-}
-
-function defaultArrowStyles(color: string, isLeft: boolean) {
-  const degs = isLeft ? "135deg" : "-45deg";
-
-  return `    
-    position: absolute;
-    top: 50%;
-    z-index: 2;
-    height: 260px;
-    width: 40px;
-    background-color: transparent;
-    transform: translateY(-50%);
-
-    &::after {
-      content: '';
-      position: absolute;
-      background-color: transparent;
-      border: solid ${color};
-      border-width: 0 4px 4px 0;    
-      padding: 6px;
-      transform: rotate(${degs});
-    }
-  `;
-}
+import ReactPaginate from "react-paginate";
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -403,7 +376,7 @@ textarea {
 /* end of reset */
 
 html, body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat';
   font-size: 16px;
   background-color: #000;
 }
@@ -414,6 +387,48 @@ export const Container = styled.div`
   @media (min-width: 1024px) {
     max-width: 1280px;
     margin: 0 auto;
+  }
+`;
+
+export const ReactPaginateStyled = styled(ReactPaginate)`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 60px;
+
+  li.selected {
+    background-color: #fff;
+    color: #000;
+  }
+
+  li {
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    border: solid 1px #fff;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px;
+
+    a {
+      outline: none;
+    }
+
+    &:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    li {
+      font-size: 20px;
+      padding: 8px;
+    }
   }
 `;
 

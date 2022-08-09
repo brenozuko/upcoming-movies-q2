@@ -24,7 +24,7 @@ import {
 type CardProps = {
   title: string;
   rate: string;
-  release: string;
+  release: Date;
   overview: string;
   poster: string;
 };
@@ -33,9 +33,20 @@ const Card = function ({ title, rate, release, overview, poster }: CardProps) {
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [toggleText, setToggleText] = useState("Abrir sinopse");
 
-  const toggleCard = function () {
+  const toggleCard = () => {
     setIsCardOpen(!isCardOpen);
     setToggleText(isCardOpen ? "Abrir sinopse" : "Fechar sinopse");
+  };
+
+  const renderReleaseDate = () => {
+    if (
+      Object.prototype.toString.call(release) === "[object Date]" &&
+      release.getTime()
+    ) {
+      return `Data de Lançamento: ${format(release, "dd/MM/yyyy")}`;
+    }
+
+    return "Não há data de lançamento";
   };
 
   const renderPostPath = () => {
@@ -58,13 +69,10 @@ const Card = function ({ title, rate, release, overview, poster }: CardProps) {
 
           <Rate>
             <Star />
-            <p>{rate ? rate : 'Não avaliado'}</p>
+            <p>{rate ? rate : "Não avaliado"}</p>
           </Rate>
 
-          <Release>{`Data de Lançamento: ${format(
-            new Date(release),
-            "dd/MM/yyyy"
-          )}`}</Release>
+          <Release>{renderReleaseDate()}</Release>
 
           {overview && (
             <ToggleOverview isCardOpen={isCardOpen} onClick={toggleCard}>

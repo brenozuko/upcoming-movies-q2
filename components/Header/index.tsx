@@ -1,27 +1,18 @@
 import Image from "next/image";
 
-// ICONS
-import Glass from "./icons/glass.svg";
-
 // STYLES
-import { Container, Content, SearchBar } from "./styles";
+import { Container, Content, SearchButton } from "./styles";
 
 type HeaderProps = {
-  searchValue: string;
-  onChange: (newValue: string) => void;
-  onRequestSearch: () => void;
+  openSearch: () => void;
 };
-const Header = function () {
+const Header = function ({ openSearch }: HeaderProps) {
   return (
     <Container>
       <Content>
         <Image src="/logo.png" alt="logo" width={130} height={70} />
 
-        <SearchBar>
-          <Glass />
-
-          <input placeholder="Buscar... " type="text" />
-        </SearchBar>
+        <SearchButton onClick={openSearch}>ABRIR BUSCA</SearchButton>
       </Content>
     </Container>
   );
