@@ -1,0 +1,4 @@
+exclude: 
+  - feat/*
+  - refactor/*
+delete_closed_pr: true
